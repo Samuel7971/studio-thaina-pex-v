@@ -1,0 +1,6 @@
+@StudioThaina.Api_HostAddress = http://localhost:5081
+
+GET {{StudioThaina.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

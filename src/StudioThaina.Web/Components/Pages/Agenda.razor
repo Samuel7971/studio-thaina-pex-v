@@ -1,0 +1,4 @@
+@page "/agenda"
+<h1>Agenda</h1><div class="row g-2 mb-3"><div class="col"><InputDate class="form-control" @bind-Value="inicio" /></div><div class="col"><InputDate class="form-control" @bind-Value="fim" /></div><div class="col"><button class="btn btn-primary" @onclick="Carregar">Filtrar</button></div></div>
+<table class="table"><thead><tr><th>Horário</th><th>Cliente</th><th>Serviço</th><th>Valor</th><th>Status</th></tr></thead><tbody>@foreach(var x in itens){<tr><td>@x.DataHora.ToString("dd/MM/yyyy HH:mm")</td><td>@x.Cliente</td><td>@x.Servico</td><td>@x.ValorCobrado.ToString("C")</td><td>@x.Status</td></tr>}</tbody></table>
+@code {DateTime inicio=DateTime.Today.AddDays(-7),fim=DateTime.Today.AddDays(30);List<AgendamentoModel> itens=[];protected override Task OnInitializedAsync()=>Carregar();async Task Carregar()=>itens=await Api.Agendamentos(inicio,fim);}
